@@ -9,6 +9,8 @@ public class LookAtFollow : MonoBehaviour
 
     private Transform target;
 
+    public GameObject player;
+
 
 
 
@@ -21,7 +23,10 @@ public class LookAtFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(mTarget.position);
-        transform.Translate(mSpeed*Time.deltaTime, 0.0f, 0);
+        transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
     }
+    void OnCollisionEnter(Collision collision)
+         {
+          Destroy(player);
+          }
 }
